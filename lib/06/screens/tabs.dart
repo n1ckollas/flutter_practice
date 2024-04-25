@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals/06/data/dummy_data.dart';
 import 'package:meals/06/models/meal.dart';
+import 'package:meals/06/screens/categories.dart';
 import 'package:meals/06/screens/filters.dart';
 import 'package:meals/06/widgets/main_drawer.dart';
 
@@ -84,7 +85,10 @@ class _TabsScreenState extends State<TabsScreen> {
       return true;
     }).toList();
 
-    Widget activePage = Text("CategoriesScreen()");
+    Widget activePage = CategoriesScreen(
+      onToggleFavorite: _toggleMealFavoriteStatus, 
+      availableMeals: availableMeals
+    );
     var activePageTitle = "Categories";
 
     if (_selectedPageIndex == 1) {
