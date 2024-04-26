@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals/06/widgets/category_grid_item.dart';
 import 'package:meals/06/data/dummy_data.dart';
 import 'package:meals/06/models/category.dart';
 import 'package:meals/06/models/meal.dart';
@@ -31,7 +32,14 @@ class CategoriesScreen extends StatelessWidget {
         mainAxisSpacing: 20,
       ),
       children:
-          availableCategories.map((category) => Text(category.title)).toList(),
+          availableCategories.map(
+            (category) => CategoryGridItem(
+              category:category, 
+              onSelectCategory: (){
+                _selectCategory(context, category);
+              },
+            )
+          ).toList(),
     );
   }
 }
