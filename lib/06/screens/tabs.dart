@@ -3,6 +3,8 @@ import 'package:meals/06/data/dummy_data.dart';
 import 'package:meals/06/models/meal.dart';
 import 'package:meals/06/screens/categories.dart';
 import 'package:meals/06/screens/filters.dart';
+import 'package:meals/06/screens/meal_deatails.dart';
+import 'package:meals/06/screens/meals.dart';
 import 'package:meals/06/widgets/main_drawer.dart';
 
 const kInitialFilters = {
@@ -92,7 +94,10 @@ class _TabsScreenState extends State<TabsScreen> {
     var activePageTitle = "Categories";
 
     if (_selectedPageIndex == 1) {
-      activePage = Text("MealsScreen()");
+      activePage = MealsScreen(
+        meals: _favoriteMeals, 
+        onToggleFavorite: _toggleMealFavoriteStatus, 
+      );
       activePageTitle = "Your Favorite";
     }
 
