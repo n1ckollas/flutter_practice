@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:meals/10/data/dummy_data.dart';
 import 'package:meals/10/models/meal.dart';
+import 'package:meals/10/screens/categories.dart';
 import 'package:meals/10/screens/filters.dart';
+import 'package:meals/10/screens/meals.dart';
+import 'package:meals/10/widgets/main_drawer.dart';
 
 const kInitialFilters = {
   Filter.glutenFree: false,
@@ -87,18 +90,26 @@ class _TabsScreenState extends State<TabsScreen>{
       return true;
     }).toList();
 
-    Widget activePage = Text("CategoriesScreen()");
+    Widget activePage = CategoriesScreen(
+      onToggleFavorite: _toggleMealFavoriteStatus,
+      availableMeals: availableMeals,
+    );
     var activePageTitle = "Categories";
 
     if(_selectedPageIndex == 1){
-      activePage = Text("mealsScreen()");
+      activePage = MealsScreen(
+        meals: availableMeals, 
+        onToggleFavorite: _toggleMealFavoriteStatus
+      );
       activePageTitle = "Your Favorites";
     }
     return Scaffold(
       appBar: AppBar(
         title: Text(activePageTitle)
       ),
-      // drawer: MainDrawer(),
+      drawer: MainDrawer(
+        onSelectScreen: _setScreen,
+      ),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
