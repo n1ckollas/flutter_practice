@@ -23,7 +23,7 @@ class CategoriesScreen extends StatelessWidget{
       MaterialPageRoute(
         builder: (ctx) => MealsScreen(
           title: category.title,
-          meals: availableMeals, 
+          meals: filteredMeals, 
           onToggleFavorite: onToggleFavorite,
         )
       )
