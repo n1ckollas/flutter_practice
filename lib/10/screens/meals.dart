@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meals/10/models/meal.dart';
+import 'package:meals/10/screens/meal_details.dart';
 import 'package:meals/10/widgets/meal_item.dart';
 
 class MealsScreen extends StatelessWidget{
@@ -17,7 +18,11 @@ class MealsScreen extends StatelessWidget{
   void _selectMeal(BuildContext context, Meal meal){
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (ctx) => Text("MealDetailsScreen()"),
+        builder: (ctx) => 
+          MealDetailsScreen(
+            meal: meal, 
+            onToggleFavorite: onToggleFavorite,
+          ) 
       )
     );
   }
