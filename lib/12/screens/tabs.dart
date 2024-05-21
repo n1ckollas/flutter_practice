@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals/12/data/dummy_data.dart';
 import 'package:meals/12/models/meal.dart';
+import 'package:meals/12/screens/categories.dart';
 import 'package:meals/12/screens/filters.dart';
 import 'package:meals/12/widgets/main_drawer.dart';
 
@@ -61,8 +62,9 @@ class _TabsScreenState extends State<TabsScreen> {
     if (identifier == "filters") {
       final result = await Navigator.of(context).push<Map<Filter, bool>>(
         MaterialPageRoute(
-          builder: (ctx) => Text("FiltersScreen"),
-        ),
+            builder: (ctx) => FiltersScreen(
+                  currentFilters: _selectedFilters,
+                )),
       );
 
       setState(() {
@@ -71,6 +73,7 @@ class _TabsScreenState extends State<TabsScreen> {
     }
   }
 
+  @override
   Widget build(context) {
     final availableMeals = dummyMeals.where((meal) {
       if (_selectedFilters[Filter.glutenFree]! && !meal.isGlutenFree) {
@@ -88,7 +91,9 @@ class _TabsScreenState extends State<TabsScreen> {
       return true;
     }).toList();
 
-    Widget activePage = Text("CategoriesScreen");
+    Widget activePage = CategoriesScreen(
+        availableMeals: availableMeals,
+        onToggleFavorites: _toggleMealFavoriteStatus);
     var activePageTitle = "Categories";
 
     if (_selectedPageIndex == 1) {
