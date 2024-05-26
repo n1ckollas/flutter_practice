@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meals/03/models/meal.dart';
+import 'package:meals/03/providers/favorites_provider.dart';
 
-class MealDetailsScreen extends StatelessWidget {
+class MealDetailsScreen extends ConsumerWidget {
   const MealDetailsScreen({
     super.key,
     required this.meal,
@@ -11,12 +13,12 @@ class MealDetailsScreen extends StatelessWidget {
   final void Function(Meal meal) onToggleFavorite;
 
   @override
-  Widget build(context) {
+  Widget build(context, WidgetRef ref) {
     return Scaffold(
         appBar: AppBar(title: Text(meal.title), actions: [
           IconButton(
               onPressed: () {
-                onToggleFavorite(meal);
+                ref.read(favoritesProvider.notifier).toggleFavoriteStatus(meal);
               },
               icon: const Icon(Icons.star))
         ]),
