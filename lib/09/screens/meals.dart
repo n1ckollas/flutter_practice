@@ -3,73 +3,56 @@ import 'package:meals/09/models/meal.dart';
 import 'package:meals/09/screens/meal_details.dart';
 import 'package:meals/09/widgets/meal_item.dart';
 
-class MealsScreen extends StatelessWidget{
+class MealsScreen extends StatelessWidget {
   const MealsScreen({
     super.key,
     this.title,
     required this.meals,
-    required this.onToggleFavorite,
   });
   final String? title;
   final List<Meal> meals;
-  final void Function(Meal meal) onToggleFavorite;
 
-  void _selecteMeal(BuildContext context, Meal meal){
-    Navigator.of(context).push(
-      MaterialPageRoute(
+  void _selecteMeal(BuildContext context, Meal meal) {
+    Navigator.of(context).push(MaterialPageRoute(
         builder: (ctx) => MealDetailsScreen(
-          meal: meal, 
-          onToggleFavorite: onToggleFavorite
-        ) 
-      )
-    );
+              meal: meal,
+            )));
   }
 
   @override
-  Widget build(context){
-
+  Widget build(context) {
     Widget content = Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            "Uh oh... Nothing is here!",
+        child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text("Uh oh... Nothing is here!",
             style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                   color: Theme.of(context).colorScheme.onBackground,
-                )
-          ),
-          const SizedBox(height: 16),
-          Text(
-            "Try selecting a different category!",
+                )),
+        const SizedBox(height: 16),
+        Text("Try selecting a different category!",
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   color: Theme.of(context).colorScheme.onBackground,
-                )
-          )
-        ],
-      )
-    );
+                ))
+      ],
+    ));
 
-
-    if(meals.isNotEmpty){
+    if (meals.isNotEmpty) {
       content = ListView.builder(
-        itemCount: meals.length,
-        itemBuilder: (ctx, index) => MealItem(
-          meal: meals[index], 
-          onSelectMeal: (meal){
-            _selecteMeal(context, meal);
-          }
-        ) 
-      );
+          itemCount: meals.length,
+          itemBuilder: (ctx, index) => MealItem(
+              meal: meals[index],
+              onSelectMeal: (meal) {
+                _selecteMeal(context, meal);
+              }));
     }
 
-    if(title == null){
+    if (title == null) {
       return content;
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title!)
-      ),
+      appBar: AppBar(title: Text(title!)),
       body: content,
     );
   }
