@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meals/01/providers/filters_provider.dart';
-import 'package:meals/01/screens/tabs.dart';
 import 'package:meals/01/widgets/main_drawer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

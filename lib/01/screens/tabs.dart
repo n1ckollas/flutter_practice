@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:meals/01/models/meal.dart';
 import 'package:meals/01/providers/favorites_provider.dart';
 import 'package:meals/01/providers/filters_provider.dart';
-import 'package:meals/01/providers/meals_provider.dart';
 import 'package:meals/01/screens/categories.dart';
 import 'package:meals/01/screens/filters.dart';
 import 'package:meals/01/screens/meals.dart';
@@ -27,12 +25,6 @@ class TabsScreen extends ConsumerStatefulWidget {
 
 class _TabsScreenState extends ConsumerState<TabsScreen> {
   int _selectedPageIndex = 0;
-
-  void _showInfoMessage(String message) {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(message)));
-  }
 
   void _selectPage(int index) {
     setState(() {
