@@ -36,7 +36,11 @@ class _MapScreenState extends State<MapScreen> {
             Text(widget.isSelecting ? "Pick your location" : "Your Location"),
         actions: [
           if (widget.isSelecting)
-            IconButton(onPressed: () {}, icon: Icon(Icons.save))
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).pop(pickedLocation);
+                },
+                icon: const Icon(Icons.save))
         ],
       ),
       body: GoogleMap(
